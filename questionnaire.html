@@ -374,16 +374,16 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <body>
 
 <div class="alert"><div class="alert-in">
-  <span>Entretien de diagnostic de 30 minutes, sans frais -- <a href="#contact">prendre rendez-vous</a></span>
+  <span>Entretien de diagnostic de 30 minutes, sans frais -- <a href="/#contact">prendre rendez-vous</a></span>
   <span class="sp"></span>
   <a class="lang" href="questionnaire-en.html" hreflang="en">English</a>
 </div></div>
 
 <header class="bar"><div class="bar-in">
-  <a class="sigle" href="">Severine Williams
+  <a class="sigle" href="/">Severine Williams
     <span class="sig-sub">Formation linguistique et interculturelle</span>
   </a>
-  <nav class="menu" aria-label="Principal"><a href="#approche">Approche</a> <a href="#offre">Formations</a> <a href="#tres-haut-niveau">Très Haut Niveau</a> <a href="#parcours">Parcours</a> <a href="#contact">Contact</a></nav>
+  <nav aria-label="Principal" class="menu"><a href="/#approche">Approche</a><a href="/#offre">Formations</a><a href="/#tres-haut-niveau">Très Haut Niveau</a><a href="/#parcours">Parcours</a><a href="/#contact">Contact</a></nav>
 </div></header>
 
 <main>
@@ -426,7 +426,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
   <div class="q-opts"><label class="q-opt"><input type="radio" name="q7" value="0"><span>Famille et amis</span></label><label class="q-opt"><input type="radio" name="q7" value="1"><span>Étudiants et enseignants</span></label><label class="q-opt"><input type="radio" name="q7" value="2"><span>Collègues et clients</span></label><label class="q-opt"><input type="radio" name="q7" value="3"><span>Partenaires et investisseurs</span></label><label class="q-opt"><input type="radio" name="q7" value="4"><span>Dirigeants, diplomates ou grandes institutions</span></label></div>
 </div>
     <div style="margin-top:2.5rem">
-      <button class="btn" type="button" onclick="calcScore('Veuillez répondre à toutes les questions.',"Séverine vous proposera un programme adapté lors de l'entretien de diagnostic gratuit.")">Voir mon profil</button>
+      <button class="btn" type="button" onclick="calcScore()">Voir mon profil</button>
     </div>
   </form>
   <div class="result-card" id="result">
@@ -446,29 +446,33 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </a>
 <span class="wa-tip">WhatsApp</span>
 
+
+
 <script>
-// Barre de progression en temps reel
 document.querySelectorAll('input[type=radio]').forEach(function(r){
-  r.addEventListener('change', function(){
-    var answered = 0;
-    for(var i=0;i<8;i++){ if(document.querySelector('input[name="q'+i+'"]:checked')) answered++; }
-    document.getElementById('prog').style.width = (answered/8*100)+'%';
+  r.addEventListener('change',function(){
+    var a=0;
+    for(var i=0;i<8;i++){if(document.querySelector('input[name="q'+i+'"]:checked'))a++;}
+    document.getElementById('prog').style.width=(a/8*100)+'%';
   });
 });
-
-function calcScore(alertMsg, ctaPhrase){
-  var s=0, answered=0;
+function calcScore(){
+  var s=0,answered=0;
   for(var i=0;i<8;i++){
     var r=document.querySelector('input[name="q'+i+'"]:checked');
-    if(r){ s+=parseInt(r.value); answered++; }
-    else { document.getElementById('qb'+i).style.outline='2px solid var(--crimson)'; }
+    if(r){s+=parseInt(r.value);answered++;}
+    else{var b=document.getElementById('qb'+i);if(b)b.style.outline='2px solid var(--crimson)'}
   }
-  if(answered<8){ alert(alertMsg); return; }
+  if(answered<8){alert("Veuillez répondre à toutes les questions.");return;}
   var t='',l='',n='';
-  if(s>=0&&s<=7){t='Fondations';l='Vous repartez de bases solides. Le travail est structuré, progressif et adapté à votre rythme.';n="Programme suggéré : remise à niveau, puis construction progressive des compétences à l'oral et à l'écrit."} if(s>=8&&s<=15){t='Intermédiaire';l="Vous avez les acquis pour progresser rapidement. L'objectif est de fluidifier et de corriger les automatismes.";n='Programme suggéré : grammaire en contexte, travail oral intensif, enrichissement du vocabulaire actif.'} if(s>=16&&s<=22){t='Avancé';l="Votre niveau est solide. Ce qui reste, c'est la précision, le registre et l'aisance professionnelle.";n='Programme suggéré : perfectionnement, préparation à un examen ou à un oral, coaching linguistique ciblé.'} if(s>=23&&s<=32){t='Très Haut Niveau';l='Vous êtes à un niveau où chaque détail compte. Le travail porte sur les nuances culturelles et la maîtrise du registre natif.';n="Programme suggéré : Très Haut Niveau, Executive Speaking, négociation, rédaction stratégique ou réduction d'accent."}
+  if(s>=0&&s<=7){t="Fondations";l="Vous repartez de bases solides. Le travail est structuré, progressif et adapté à votre rythme.";n="Programme suggéré : remise à niveau, puis construction progressive des compétences."}
+  if(s>=8&&s<=15){t="Intermédiaire";l="Vous avez les acquis pour progresser rapidement. Objectif : fluidifier et corriger les automatismes.";n="Programme suggéré : grammaire en contexte, travail oral intensif, vocabulaire actif."}
+  if(s>=16&&s<=22){t="Avancé";l="Votre niveau est solide. Ce qui reste : précision, registre et aisance professionnelle.";n="Programme suggéré : perfectionnement, préparation concours ou oral, coaching ciblé."}
+  if(s>=23&&s<=32){t="Très Haut Niveau";l="Vous êtes à un niveau où chaque détail compte. Travail sur les nuances culturelles et le registre natif.";n="Programme suggéré : Executive Speaking, négociation, rédaction stratégique ou réduction accent."}
+  var cta="Séverine vous proposera un programme adapté lors de l'entretien de diagnostic gratuit.";
   document.getElementById('res-title').textContent=t;
   document.getElementById('res-lead').textContent=l;
-  document.getElementById('res-note').textContent=n+' '+ctaPhrase;
+  document.getElementById('res-note').textContent=n+' '+cta;
   var res=document.getElementById('result');
   res.style.display='block';
   res.scrollIntoView({behavior:'smooth',block:'start'});

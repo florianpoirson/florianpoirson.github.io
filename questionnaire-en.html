@@ -374,16 +374,16 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <body>
 
 <div class="alert"><div class="alert-in">
-  <span>Free 30-minute diagnostic call -- <a href="../#contact">book a time</a></span>
+  <span>Free 30-minute diagnostic call -- <a href="/en/#contact">book a time</a></span>
   <span class="sp"></span>
   <a class="lang" href="../questionnaire.html" hreflang="fr">Français</a>
 </div></div>
 
 <header class="bar"><div class="bar-in">
-  <a class="sigle" href="../">Severine Williams
+  <a class="sigle" href="/en/">Severine Williams
     <span class="sig-sub">Language and intercultural training</span>
   </a>
-  <nav class="menu" aria-label="Principal"><a href="../#approche">Approach</a> <a href="../#offre">Programmes</a> <a href="../#tres-haut-niveau">Executive</a> <a href="../#parcours">Background</a> <a href="../#contact">Contact</a></nav>
+  <nav aria-label="Principal" class="menu"><a href="/en/#approche">Approach</a><a href="/en/#offre">Programmes</a><a href="/en/#tres-haut-niveau">Executive</a><a href="/en/#parcours">Background</a><a href="/en/#contact">Contact</a></nav>
 </div></header>
 
 <main>
@@ -426,7 +426,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
   <div class="q-opts"><label class="q-opt"><input type="radio" name="q7" value="0"><span>Family and friends</span></label><label class="q-opt"><input type="radio" name="q7" value="1"><span>Students and teachers</span></label><label class="q-opt"><input type="radio" name="q7" value="2"><span>Colleagues and clients</span></label><label class="q-opt"><input type="radio" name="q7" value="3"><span>Partners and investors</span></label><label class="q-opt"><input type="radio" name="q7" value="4"><span>Executives, diplomats or major institutions</span></label></div>
 </div>
     <div style="margin-top:2.5rem">
-      <button class="btn" type="button" onclick="calcScore('Please answer all the questions.','Séverine will propose a matched programme during the free diagnostic call.')">See my profile</button>
+      <button class="btn" type="button" onclick="calcScore()">See my profile</button>
     </div>
   </form>
   <div class="result-card" id="result">
@@ -446,29 +446,33 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </a>
 <span class="wa-tip">WhatsApp</span>
 
+
+
 <script>
-// Barre de progression en temps reel
 document.querySelectorAll('input[type=radio]').forEach(function(r){
-  r.addEventListener('change', function(){
-    var answered = 0;
-    for(var i=0;i<8;i++){ if(document.querySelector('input[name="q'+i+'"]:checked')) answered++; }
-    document.getElementById('prog').style.width = (answered/8*100)+'%';
+  r.addEventListener('change',function(){
+    var a=0;
+    for(var i=0;i<8;i++){if(document.querySelector('input[name="q'+i+'"]:checked'))a++;}
+    document.getElementById('prog').style.width=(a/8*100)+'%';
   });
 });
-
-function calcScore(alertMsg, ctaPhrase){
-  var s=0, answered=0;
+function calcScore(){
+  var s=0,answered=0;
   for(var i=0;i<8;i++){
     var r=document.querySelector('input[name="q'+i+'"]:checked');
-    if(r){ s+=parseInt(r.value); answered++; }
-    else { document.getElementById('qb'+i).style.outline='2px solid var(--crimson)'; }
+    if(r){s+=parseInt(r.value);answered++;}
+    else{var b=document.getElementById('qb'+i);if(b)b.style.outline='2px solid var(--crimson)'}
   }
-  if(answered<8){ alert(alertMsg); return; }
+  if(answered<8){alert("Please answer all the questions.");return;}
   var t='',l='',n='';
-  if(s>=0&&s<=7){t='Foundation level';l='You are rebuilding solid foundations. The work is structured, progressive and adapted to your pace.';n='Suggested programme: rebuilding the basics, then progressive development of speaking and writing skills.'} if(s>=8&&s<=15){t='Intermediate';l='You have the foundations to progress quickly. The goal is fluency and correcting ingrained habits.';n='Suggested programme: grammar in context, intensive oral work, expanding your active vocabulary.'} if(s>=16&&s<=22){t='Advanced';l='Your level is solid. What remains is precision, register and professional ease.';n='Suggested programme: advanced refinement, exam or oral preparation, targeted language coaching.'} if(s>=23&&s<=32){t='Executive level';l='You are at a level where every detail counts. The work focuses on cultural nuance and native-register mastery.';n='Suggested programme: executive level, executive speaking, negotiation, strategic writing or accent reduction.'}
+  if(s>=0&&s<=7){t="Foundation level";l="You are rebuilding solid foundations. The work is structured, progressive and adapted to your pace.";n="Suggested programme: rebuilding the basics, then progressive development of speaking and writing."}
+  if(s>=8&&s<=15){t="Intermediate";l="You have the foundations to progress quickly. Goal: fluency and correcting ingrained habits.";n="Suggested programme: grammar in context, intensive oral work, expanding active vocabulary."}
+  if(s>=16&&s<=22){t="Advanced";l="Your level is solid. What remains: precision, register and professional ease.";n="Suggested programme: advanced refinement, exam or oral preparation, targeted coaching."}
+  if(s>=23&&s<=32){t="Executive level";l="You are at a level where every detail counts. Focus on cultural nuance and native-register mastery.";n="Suggested programme: executive speaking, negotiation, strategic writing or accent reduction."}
+  var cta="Séverine will propose a matched programme during the free diagnostic call.";
   document.getElementById('res-title').textContent=t;
   document.getElementById('res-lead').textContent=l;
-  document.getElementById('res-note').textContent=n+' '+ctaPhrase;
+  document.getElementById('res-note').textContent=n+' '+cta;
   var res=document.getElementById('result');
   res.style.display='block';
   res.scrollIntoView({behavior:'smooth',block:'start'});
