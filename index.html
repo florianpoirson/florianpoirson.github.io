@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Dr Séverine Williams — Formation linguistique et interculturelle de haut niveau | Anglais &amp; FLE</title>
+<title>Dr Séverine Williams, Formation linguistique et interculturelle de haut niveau | Anglais &amp; FLE</title>
 <meta content="Formation en anglais et en français langue étrangère à distance, par Séverine Williams, docteure de Harvard et agrégée d'anglais. Approche culturelle et interculturelle, programmes sur mesure : programme Très Haut Niveau pour cadres dirigeants, experts et diplomates, perfectionnement, concours, oraux, entretiens, pitch en anglais." name="description"/>
 
 <meta content="Séverine Williams" name="author"/>
@@ -301,21 +301,67 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 @keyframes rise{to{opacity:1; transform:none}}
 @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none} }
 
-/* bouton WhatsApp flottant */
+
+
+
+/* ---- bandeau défilant institutions ---- */
+.scroll-band{
+  background:var(--grey); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  overflow:hidden; padding:.9rem 0; position:relative;
+}
+.scroll-band::before,.scroll-band::after{
+  content:""; position:absolute; top:0; bottom:0; width:6rem; z-index:2; pointer-events:none;
+}
+.scroll-band::before{left:0; background:linear-gradient(90deg,var(--grey),transparent)}
+.scroll-band::after{right:0; background:linear-gradient(270deg,var(--grey),transparent)}
+.scroll-track{
+  display:flex; gap:3.5rem; width:max-content;
+  animation:scroll-logos 22s linear infinite;
+}
+.scroll-track:hover{animation-play-state:paused}
+.scroll-logo{
+  color:var(--muted); opacity:.65; display:flex; align-items:center; height:2.5rem;
+  transition:opacity .25s, color .25s;
+}
+.scroll-logo:hover{opacity:1; color:var(--crimson)}
+.scroll-logo svg{height:100%; width:auto}
+@keyframes scroll-logos{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media (prefers-reduced-motion:reduce){
+  .scroll-track{animation:none; flex-wrap:wrap; width:100%; justify-content:center}
+}
+
+/* ---- bouton parcours avec effet ---- */
+.btn-parcours{
+  background:transparent; border:2px solid rgba(255,255,255,.75); color:#fff;
+  position:relative; overflow:hidden; transition:color .35s;
+}
+.btn-parcours::before{
+  content:""; position:absolute; inset:0;
+  background:#fff; transform:translateX(-101%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1); z-index:0;
+}
+.btn-parcours:hover::before{transform:translateX(0)}
+.btn-parcours:hover{color:var(--dark)}
+.btn-parcours span{position:relative; z-index:1}
+
+/* ---- bouton WhatsApp ---- */
 .wa-float{
-  position:fixed; bottom:1.75rem; right:1.75rem; z-index:50;
-  width:3.5rem; height:3.5rem; border-radius:50%;
-  background:#25D366; color:#fff; text-decoration:none;
+  position:fixed; bottom:5rem; right:1.75rem; z-index:50;
+  width:3.25rem; height:3.25rem; border-radius:50%;
+  background:var(--crimson); color:#fff; text-decoration:none;
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 4px 16px rgba(0,0,0,.22);
+  box-shadow:0 4px 16px rgba(165,28,48,.4);
   transition:transform .2s, box-shadow .2s;
 }
-.wa-float:hover{transform:scale(1.08); box-shadow:0 6px 20px rgba(0,0,0,.3); color:#fff}
-.wa-float svg{width:1.85rem; height:1.85rem; fill:#fff}
+.wa-float:hover{transform:scale(1.1); box-shadow:0 6px 22px rgba(165,28,48,.55); color:#fff}
+.wa-float svg{width:1.65rem; height:1.65rem; fill:#fff}
 .wa-tip{
-  position:fixed; bottom:5.9rem; right:1.75rem; z-index:50;
-  background:var(--dark); color:#fff; font-family:var(--sans); font-size:.8rem;
-  padding:.45rem .85rem; white-space:nowrap; pointer-events:none;
+  position:fixed; bottom:9.1rem; right:1.75rem; z-index:50;
+  background:var(--dark); color:#fff; font-family:var(--sans); font-size:.78rem;
+  padding:.4rem .8rem; white-space:nowrap; pointer-events:none;
   opacity:0; transition:opacity .2s; border-radius:2px;
 }
 .wa-float:hover + .wa-tip{opacity:1}
@@ -338,7 +384,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <a class="skip" href="#contenu">Aller au contenu</a>
 <div class="alert">
 <div class="alert-in">
-Entretien de diagnostic de 30 minutes, sans frais — <a href="#contact">prendre rendez-vous</a>
+Entretien de diagnostic de 30 minutes, sans frais, <a href="#contact">prendre rendez-vous</a>
 
 <span class="sp"></span>
 <a aria-label="English version" class="lang" href="/en/" hreflang="en" lang="en">English</a>
@@ -378,7 +424,7 @@ Formation en anglais et en français langue étrangère, à distance, pour celle
 <a class="btn btn-ghost" href="#parcours" style="border-color:rgba(255,255,255,.75); color:#fff; background:rgba(255,255,255,.08)">Voir le parcours</a>
 </div>
 <p class="creds reveal d3">
-<b>Dr Séverine Williams</b> — Doctorat de Harvard University · Agrégée d’anglais · Professeure agrégée en disponibilité · Vingt ans d’enseignement aux États-Unis, au Royaume-Uni, en Allemagne, en France et au Maroc
+<b>Dr Séverine Williams</b>, docteure de Harvard University, Agrégée d’anglais · Professeure agrégée en disponibilité · Vingt ans d’enseignement aux États-Unis, au Royaume-Uni, en Allemagne, en France et au Maroc
 
 </p>
 </div>
@@ -392,7 +438,7 @@ Formation en anglais et en français langue étrangère, à distance, pour celle
 <div class="page">
 <h2>L’approche</h2>
 <p class="lead">
-Une langue n’est pas un code neutre que l’on transpose. C’est un ensemble de conventions — registre, humour, silence, façon de dire non — qui décident de la manière dont vous êtes entendu. Une grammaire irréprochable ne les remplace pas.
+Une langue n’est pas un code neutre que l’on transpose. C’est un ensemble de conventions, registre, humour, silence, façon de dire non, qui décident de la manière dont vous êtes entendu. Une grammaire irréprochable ne les remplace pas.
 
 </p>
 <div class="trio">
@@ -467,7 +513,7 @@ Pour cadres dirigeants, experts et diplomates : la langue n’est plus une comp�
 <li>
 <div>
 <h3>Réduction d’accent et posture</h3>
-<p>Intonation, rythme, débit, accentuation, pauses — et l’aisance culturelle qui fait disparaître la barrière avant même le premier mot de fond.</p>
+<p>Intonation, rythme, débit, accentuation, pauses, et l’aisance culturelle qui fait disparaître la barrière avant même le premier mot de fond.</p>
 </div>
 </li>
 </ul>
@@ -550,14 +596,14 @@ A vécu et travaillé aux États-Unis, au Royaume-Uni, en Allemagne, en France e
 <li>
 <span class="an">2019</span>
 <span class="quoi">
-Agrégation externe spéciale d’anglais — admise 4<sup>e</sup><em>Arrêté d’admission publié au Journal officiel.</em>
+Agrégation externe spéciale d’anglais, admise 4<sup>e</sup><em>Arrêté d’admission publié au Journal officiel.</em>
 
 </span>
 </li>
 <li>
 <span class="an">2019</span>
 <span class="quoi">
-CAPES externe d’anglais — admise<em>Arrêté d’admission publié au Journal officiel. Préparation à Paris-Sorbonne.</em>
+CAPES externe d’anglais, admise<em>Arrêté d’admission publié au Journal officiel. Préparation à Paris-Sorbonne.</em>
 
 </span>
 </li>
@@ -730,7 +776,7 @@ Bourses de recherche<em>Bourse doctorale complète de Harvard, bourse d’échan
 <ul class="refs">
 <li>
 <a href="https://dash.harvard.edu/entities/publication/73120378-acd4-6bd4-e053-0100007fdf3b" rel="noopener" target="_blank">
-<span class="t">Thèse de doctorat, dépôt institutionnel DASH de Harvard — « Que reste-t-il de Proust ? »</span>
+<span class="t">Thèse de doctorat, dépôt institutionnel DASH de Harvard : Que reste-t-il de Proust ? »</span>
 <span class="u">dash.harvard.edu</span>
 </a>
 </li>
@@ -742,13 +788,13 @@ Bourses de recherche<em>Bourse doctorale complète de Harvard, bourse d’échan
 </li>
 <li>
 <a href="https://news.harvard.edu/gazette/story/2008/05/instability-and-decomposition/" rel="noopener" target="_blank">
-<span class="t">Harvard Gazette, 2008 — compte rendu de la conférence du Harvard Humanities Center co-organisée par Séverine Meunier</span>
+<span class="t">Harvard Gazette, 2008, compte rendu de la conférence du Harvard Humanities Center co-organisée par Séverine Meunier</span>
 <span class="u">news.harvard.edu</span>
 </a>
 </li>
 <li>
 <a href="https://news.harvard.edu/gazette/story/2012/05/celebrating-commencement-2012/" rel="noopener" target="_blank">
-<span class="t">Harvard Gazette, 2012 — Commencement, promotion de doctorat</span>
+<span class="t">Harvard Gazette, 2012, Commencement, promotion de doctorat</span>
 <span class="u">news.harvard.edu</span>
 </a>
 </li>
@@ -760,7 +806,7 @@ Bourses de recherche<em>Bourse doctorale complète de Harvard, bourse d’échan
 </li>
 <li>
 <a href="https://www.booklore.ma/team" rel="noopener" target="_blank">
-<span class="t">Librairie Booklore, Marrakech — équipe et programmation culturelle</span>
+<span class="t">Librairie Booklore, Marrakech, équipe et programmation culturelle</span>
 <span class="u">booklore.ma</span>
 </a>
 </li>
@@ -794,47 +840,16 @@ Bourses de recherche<em>Bourse doctorale complète de Harvard, bourse d’échan
 </div>
 </section>
 <!-- ================= FAQ ================= -->
-<section class="band" id="faq">
-<div class="page">
-<div class="main">
-<h2>Questions fréquentes</h2>
-<div class="faq">
-<details>
-<summary>Les cours ont-ils lieu en présentiel ?</summary>
-<div class="rep">Non. Toutes les formations se déroulent en distanciel, en visioconférence, ce qui permet de travailler depuis n’importe quel pays et de s’adapter aux fuseaux horaires comme aux agendas chargés.</div>
-</details>
-<details>
-<summary>Quelles langues sont enseignées ?</summary>
-<div class="rep">L’anglais, britannique et américain, et le français langue étrangère. Les séances peuvent se dérouler en français ou en anglais selon l’objectif visé.</div>
-</details>
-<details>
-<summary>Combien coûte une formation ?</summary>
-<div class="rep">Les tarifs sont établis sur mesure, après un entretien de diagnostic gratuit de trente minutes. Ils dépendent du format, de la fréquence et du volume total. Un devis écrit est remis avant la première séance.</div>
-</details>
-<details>
-<summary>À partir de quel niveau peut-on commencer ?</summary>
-<div class="rep">De la remise à niveau au perfectionnement le plus exigeant. Le travail est particulièrement adapté aux personnes qui ont déjà un bon niveau et qui butent sur le dernier écart, celui des usages culturels et du naturel.</div>
-</details>
-<details>
-<summary>Quels concours et examens peuvent être préparés ?</summary>
-<div class="rep">Les concours de l’enseignement (CAPES et agrégation d’anglais), les épreuves écrites et orales des concours des grandes écoles, les entretiens d’admission, ainsi que les entretiens d’embauche et les oraux professionnels en anglais.</div>
-</details>
-<details>
-<summary>Qu’est-ce que l’approche interculturelle change concrètement ?</summary>
-<div class="rep">On ne travaille pas seulement la langue, mais les attentes de vos interlocuteurs : le degré de directivité admis, la place de l’humour, la façon d’exprimer un désaccord, la construction d’un argument, ce qui se dit et ce qui se tait. C’est ce qui fait la différence entre être compris et être convaincant.</div>
-</details>
-<details>
-<summary>En quoi consiste le programme « Très Haut Niveau » ?</summary>
-<div class="rep">C’est un cursus destiné aux cadres dirigeants, aux experts et aux diplomates, articulé autour de quatre modules avancés : Executive Speaking &amp; Leadership, négociation et diplomatie, rédaction stratégique, réduction d’accent et posture. Ils sont combinés selon la fonction, les interlocuteurs et l’échéance — rarement les quatre à la fois.</div>
-</details>
-<details>
-<summary>Qui est Séverine Williams ?</summary>
-<div class="rep">Docteure de l’université Harvard en langues et littératures romanes (2012) et agrégée d’anglais (2019, reçue 4<sup>e</sup>), elle a enseigné pendant vingt ans aux États-Unis, au Royaume-Uni, en France et au Maroc, notamment à Harvard, à Boston College, à l’Institut français de Londres, à la Sorbonne et au lycée Louis-le-Grand. Son parcours est vérifiable auprès de sources publiques.</div>
-</details>
-</div>
-</div>
-</div>
+
+<section id="faq">
+  <div class="page" style="padding-block:clamp(2.5rem,5vw,4rem)">
+    <a href="faq.html" style="text-decoration:none">
+      <h2 style="color:var(--crimson);border-bottom:2px solid var(--crimson);display:inline-block;padding-bottom:.25rem;margin-bottom:.75rem">Questions fréquentes</h2>
+    </a>
+    <p style="color:var(--muted);max-width:50ch;margin:0;font-size:1rem">Niveaux, tarifs, méthode, questionnaire de niveau et parcours de Séverine Williams.</p>
+  </div>
 </section>
+
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="band">
 <div class="page">
@@ -849,11 +864,7 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
 <h3>Courriel</h3>
 <a href="mailto:contact@severinewilliams.com">contact@severinewilliams.com</a>
 </div>
-<div class="ct">
-<h3>WhatsApp</h3>
-<a href="https://wa.me/33652402492" rel="noopener" target="_blank">+33 6 52 40 24 92</a>
-<div class="pr">Messages et appels</div>
-</div>
+
 <div class="ct">
 <h3>LinkedIn</h3>
 <a href="https://www.linkedin.com/company/severine-williams-coaching/" rel="noopener" target="_blank">Dr Séverine Williams</a>
@@ -899,7 +910,7 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
 <h4>Contact</h4>
 <ul>
 <li><a href="mailto:contact@severinewilliams.com">contact@severinewilliams.com</a></li>
-<li><a href="https://wa.me/33652402492" rel="noopener" target="_blank">WhatsApp +33 6 52 40 24 92</a></li>
+
 </ul>
 </div>
 </div>
@@ -911,11 +922,11 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
 <h4>Éditeur du site</h4>
 <p>
                 Séverine Meunier-Williams, exerçant sous l’enseigne <strong>Séverine Williams Coaching</strong>.<br/>
-                Forme juridique : <span class="todo">[à compléter — ex. entrepreneur individuel (micro-entreprise), EURL, SASU]</span><br/>
+                Forme juridique : <span class="todo">[à compléter, ex. entrepreneur individuel (micro-entreprise), EURL, SASU]</span><br/>
                 Numéro SIREN / SIRET : <span class="todo">[à compléter]</span><br/>
                 Numéro de TVA intracommunautaire : <span class="todo">[à compléter, ou mention « TVA non applicable, article 293 B du CGI »]</span><br/>
                 Siège : <span class="todo">[adresse de l’établissement à compléter]</span><br/>
-                Courriel : contact@severinewilliams.com — Téléphone : +33 6 52 40 24 92<br/>
+                Courriel : contact@severinewilliams.com<br/>
                 Directrice de la publication : Séverine Meunier-Williams.
               </p>
 <h4>Activité de formation professionnelle</h4>
@@ -978,7 +989,7 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
 <h4>Obligations</h4>
 <p>La prestataire s’engage à une obligation de moyens : elle met en œuvre les compétences et les méthodes nécessaires à la progression du bénéficiaire, sans garantie de résultat à un examen, à un concours ou à un entretien. Le bénéficiaire s’engage à être présent aux séances convenues et à réaliser le travail personnel demandé.</p>
 <h4>Médiation de la consommation</h4>
-<p>Conformément aux articles L. 612-1 et suivants du code de la consommation, tout consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d’un litige. Médiateur compétent : <span class="todo">[nom, adresse et site du médiateur à compléter — l’adhésion à un dispositif de médiation est obligatoire pour toute activité B2C]</span>.</p>
+<p>Conformément aux articles L. 612-1 et suivants du code de la consommation, tout consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d’un litige. Médiateur compétent : <span class="todo">[nom, adresse et site du médiateur à compléter, l’adhésion à un dispositif de médiation est obligatoire pour toute activité B2C]</span>.</p>
 <h4>Droit applicable</h4>
 <p>Droit français. Tribunaux français compétents à défaut de résolution amiable.</p>
 </div>
@@ -1072,7 +1083,7 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
         "Donald J. White Teaching Award, Boston College (2002)",
         "Harvard Humanities Center conference fellowship (2008)"
       ],
-      "workLocation": {"@type":"Place","name":"À distance / Online — France, Europe, worldwide"},
+      "workLocation": {"@type":"Place","name":"À distance / Online, France, Europe, worldwide"},
       "nationality": {"@type":"Country","name":"France"},
       "sameAs": [
         "https://dash.harvard.edu/entities/publication/73120378-acd4-6bd4-e053-0100007fdf3b",
@@ -1089,13 +1100,13 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
       "@type": ["ProfessionalService", "EducationalOrganization"],
       "@id": "https://www.severinewilliams.com/#organisation",
       "name": "Séverine Williams Coaching",
-      "alternateName": "Dr Séverine Williams — Formation linguistique et interculturelle",
+      "alternateName": "Dr Séverine Williams, Formation linguistique et interculturelle",
       "url": "https://www.severinewilliams.com/",
       "email": "contact@severinewilliams.com",
       "telephone": "+33652402492",
       "founder": {"@id":"https://www.severinewilliams.com/#severine"},
       "employee": {"@id":"https://www.severinewilliams.com/#severine"},
-      "areaServed": {"@type":"Place","name":"Worldwide — online"},
+      "areaServed": {"@type":"Place","name":"Worldwide, online"},
       "availableLanguage": ["fr","en"],
       "priceRange": "Sur devis / On quotation",
       "description": "Formation en anglais et en français langue étrangère à distance : perfectionnement jusqu'au niveau natif, remise à niveau, coaching linguistique, préparation aux concours de haut niveau, aux oraux, aux entretiens d'embauche et aux pitchs en anglais. Approche culturelle, interdisciplinaire et sur mesure.",
@@ -1111,10 +1122,10 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux concours de haut niveau (CAPES, agrégation, grandes écoles)"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux oraux et aux entretiens d'embauche en anglais"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux pitchs en anglais de haut niveau"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Executive Speaking & Leadership","description":"Prise de parole en public, conduite de réunion, gestion des objections en conseil d'administration, art du pitch."}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Négociation et diplomatie","description":"Maîtrise de l'euphémisme (understatement), décodage du second degré des natifs, techniques d'influence."}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Rédaction stratégique","description":"Rapports financiers, contrats, notes blanches et communiqués de presse sans aucune scorie linguistique."}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Réduction d'accent et posture","description":"Travail de l'intonation, du rythme et de l'aisance culturelle pour éliminer les barrières de communication."}}
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Executive Speaking & Leadership","description":"Prise de parole en public, conduite de réunion, gestion des objections en conseil d'administration, art du pitch."}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Négociation et diplomatie","description":"Maîtrise de l'euphémisme (understatement), décodage du second degré des natifs, techniques d'influence."}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Rédaction stratégique","description":"Rapports financiers, contrats, notes blanches et communiqués de presse sans aucune scorie linguistique."}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Réduction d'accent et posture","description":"Travail de l'intonation, du rythme et de l'aisance culturelle pour éliminer les barrières de communication."}}
         ]
       },
       "audience": [
@@ -1169,7 +1180,7 @@ Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien 
     var nom = f.nom.value.trim(), mail = f.mail.value.trim(),
         obj = (document.getElementById("f-obj-en") || document.getElementById("f-obj")).value,
         msg = f.message.value.trim();
-    var sujet = (en ? "Enquiry — " : "Demande — ") + obj + " — " + nom;
+    var sujet = (en ? "Enquiry, " : "Demande, ") + obj + ", " + nom;
     var corps = (en ? "Name: " : "Nom : ") + nom + "\n"
               + (en ? "Email: " : "Courriel : ") + mail + "\n"
               + (en ? "Goal: " : "Objectif : ") + obj + "\n\n" + msg + "\n";

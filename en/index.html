@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Dr Séverine Williams — High-level language and intercultural training | English &amp; French</title>
+<title>Dr Séverine Williams, High-level language and intercultural training | English &amp; French</title>
 <meta content="Online English and French-as-a-foreign-language training by Séverine Williams, Harvard PhD and agrégée d'anglais. Cultural and intercultural approach, tailor-made programmes: executive-level training, refinement to native level, competitive exams, orals, interviews and pitching in English." name="description"/>
 
 <meta content="Séverine Williams" name="author"/>
@@ -301,21 +301,67 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 @keyframes rise{to{opacity:1; transform:none}}
 @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none} }
 
-/* bouton WhatsApp flottant */
+
+
+
+/* ---- bandeau défilant institutions ---- */
+.scroll-band{
+  background:var(--grey); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  overflow:hidden; padding:.9rem 0; position:relative;
+}
+.scroll-band::before,.scroll-band::after{
+  content:""; position:absolute; top:0; bottom:0; width:6rem; z-index:2; pointer-events:none;
+}
+.scroll-band::before{left:0; background:linear-gradient(90deg,var(--grey),transparent)}
+.scroll-band::after{right:0; background:linear-gradient(270deg,var(--grey),transparent)}
+.scroll-track{
+  display:flex; gap:3.5rem; width:max-content;
+  animation:scroll-logos 22s linear infinite;
+}
+.scroll-track:hover{animation-play-state:paused}
+.scroll-logo{
+  color:var(--muted); opacity:.65; display:flex; align-items:center; height:2.5rem;
+  transition:opacity .25s, color .25s;
+}
+.scroll-logo:hover{opacity:1; color:var(--crimson)}
+.scroll-logo svg{height:100%; width:auto}
+@keyframes scroll-logos{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media (prefers-reduced-motion:reduce){
+  .scroll-track{animation:none; flex-wrap:wrap; width:100%; justify-content:center}
+}
+
+/* ---- bouton parcours avec effet ---- */
+.btn-parcours{
+  background:transparent; border:2px solid rgba(255,255,255,.75); color:#fff;
+  position:relative; overflow:hidden; transition:color .35s;
+}
+.btn-parcours::before{
+  content:""; position:absolute; inset:0;
+  background:#fff; transform:translateX(-101%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1); z-index:0;
+}
+.btn-parcours:hover::before{transform:translateX(0)}
+.btn-parcours:hover{color:var(--dark)}
+.btn-parcours span{position:relative; z-index:1}
+
+/* ---- bouton WhatsApp ---- */
 .wa-float{
-  position:fixed; bottom:1.75rem; right:1.75rem; z-index:50;
-  width:3.5rem; height:3.5rem; border-radius:50%;
-  background:#25D366; color:#fff; text-decoration:none;
+  position:fixed; bottom:5rem; right:1.75rem; z-index:50;
+  width:3.25rem; height:3.25rem; border-radius:50%;
+  background:var(--crimson); color:#fff; text-decoration:none;
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 4px 16px rgba(0,0,0,.22);
+  box-shadow:0 4px 16px rgba(165,28,48,.4);
   transition:transform .2s, box-shadow .2s;
 }
-.wa-float:hover{transform:scale(1.08); box-shadow:0 6px 20px rgba(0,0,0,.3); color:#fff}
-.wa-float svg{width:1.85rem; height:1.85rem; fill:#fff}
+.wa-float:hover{transform:scale(1.1); box-shadow:0 6px 22px rgba(165,28,48,.55); color:#fff}
+.wa-float svg{width:1.65rem; height:1.65rem; fill:#fff}
 .wa-tip{
-  position:fixed; bottom:5.9rem; right:1.75rem; z-index:50;
-  background:var(--dark); color:#fff; font-family:var(--sans); font-size:.8rem;
-  padding:.45rem .85rem; white-space:nowrap; pointer-events:none;
+  position:fixed; bottom:9.1rem; right:1.75rem; z-index:50;
+  background:var(--dark); color:#fff; font-family:var(--sans); font-size:.78rem;
+  padding:.4rem .8rem; white-space:nowrap; pointer-events:none;
   opacity:0; transition:opacity .2s; border-radius:2px;
 }
 .wa-float:hover + .wa-tip{opacity:1}
@@ -339,7 +385,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <div class="alert">
 <div class="alert-in">
 
-<span lang="en">Free 30-minute diagnostic call — <a href="#contact">book a time</a></span>
+<span lang="en">Free 30-minute diagnostic call, <a href="#contact">book a time</a></span>
 <span class="sp"></span>
 <a aria-label="Version française" class="lang" href="/" hreflang="fr" lang="fr">Français</a>
 </div>
@@ -379,7 +425,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </div>
 <p class="creds reveal d3">
 
-<span lang="en"><b>Dr Séverine Williams</b> — PhD, Harvard University · Agrégée d’anglais · On leave from the French national education system · Twenty years of teaching in the United States, the United Kingdom, Germany, France and Morocco</span>
+<span lang="en"><b>Dr Séverine Williams</b>, PhD, Harvard University, Agrégée d’anglais · On leave from the French national education system · Twenty years of teaching in the United States, the United Kingdom, Germany, France and Morocco</span>
 </p>
 </div>
 <div class="hero-img">
@@ -393,7 +439,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <h2><span lang="en">The approach</span></h2>
 <p class="lead">
 
-<span lang="en">A language is not a neutral code you transpose. It is a set of conventions — register, humour, silence, how you say no — that decide how you are heard. Flawless grammar is no substitute for them.</span>
+<span lang="en">A language is not a neutral code you transpose. It is a set of conventions, register, humour, silence, how you say no, that decide how you are heard. Flawless grammar is no substitute for them.</span>
 </p>
 <div class="trio">
 <div>
@@ -467,7 +513,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <li>
 <div>
 <h3><span lang="en">Accent reduction and delivery</span></h3>
-<p><span lang="en">Intonation, rhythm, pace, stress, pauses — and the cultural ease that removes the barrier before the first substantive word is spoken.</span></p>
+<p><span lang="en">Intonation, rhythm, pace, stress, pauses, and the cultural ease that removes the barrier before the first substantive word is spoken.</span></p>
 </div>
 </li>
 </ul>
@@ -551,14 +597,14 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <span class="an">2019</span>
 <span class="quoi">
 
-<span lang="en">Agrégation externe spéciale d’anglais — ranked 4th nationally<em>Admission order published in the French Journal officiel.</em></span>
+<span lang="en">Agrégation externe spéciale d’anglais, ranked 4th nationally<em>Admission order published in the French Journal officiel.</em></span>
 </span>
 </li>
 <li>
 <span class="an">2019</span>
 <span class="quoi">
 
-<span lang="en">CAPES externe d’anglais — admitted<em>Admission order published in the French Journal officiel. Prepared at Paris-Sorbonne.</em></span>
+<span lang="en">CAPES externe d’anglais, admitted<em>Admission order published in the French Journal officiel. Prepared at Paris-Sorbonne.</em></span>
 </span>
 </li>
 <li>
@@ -730,7 +776,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <ul class="refs">
 <li>
 <a href="https://dash.harvard.edu/entities/publication/73120378-acd4-6bd4-e053-0100007fdf3b" rel="noopener" target="_blank">
-<span class="t"><span lang="en">Doctoral dissertation, Harvard’s DASH institutional repository — “Que reste-t-il de Proust ?”</span></span>
+<span class="t"><span lang="en">Doctoral dissertation, Harvard’s DASH institutional repository, “Que reste-t-il de Proust ?”</span></span>
 <span class="u">dash.harvard.edu</span>
 </a>
 </li>
@@ -742,13 +788,13 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </li>
 <li>
 <a href="https://news.harvard.edu/gazette/story/2008/05/instability-and-decomposition/" rel="noopener" target="_blank">
-<span class="t"><span lang="en">Harvard Gazette, 2008 — report on the Harvard Humanities Center conference co-organised by Séverine Meunier</span></span>
+<span class="t"><span lang="en">Harvard Gazette, 2008: on the Harvard Humanities Center conference co-organised by Séverine Meunier</span></span>
 <span class="u">news.harvard.edu</span>
 </a>
 </li>
 <li>
 <a href="https://news.harvard.edu/gazette/story/2012/05/celebrating-commencement-2012/" rel="noopener" target="_blank">
-<span class="t"><span lang="en">Harvard Gazette, 2012 — Commencement coverage</span></span>
+<span class="t"><span lang="en">Harvard Gazette, 2012, Commencement coverage</span></span>
 <span class="u">news.harvard.edu</span>
 </a>
 </li>
@@ -760,7 +806,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </li>
 <li>
 <a href="https://www.booklore.ma/team" rel="noopener" target="_blank">
-<span class="t"><span lang="en">Booklore bookshop, Marrakech — team and cultural programming</span></span>
+<span class="t"><span lang="en">Booklore bookshop, Marrakech, team and cultural programming</span></span>
 <span class="u">booklore.ma</span>
 </a>
 </li>
@@ -794,47 +840,16 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </div>
 </section>
 <!-- ================= FAQ ================= -->
-<section class="band" id="faq">
-<div class="page">
-<div class="main">
-<h2><span lang="en">Frequently asked questions</span></h2>
-<div class="faq">
-<details>
-<summary><span lang="en">Are sessions held in person?</span></summary>
-<div class="rep"><span lang="en">No. All training is delivered online by video call, which makes it possible to work from any country and to accommodate time zones and demanding schedules.</span></div>
-</details>
-<details>
-<summary><span lang="en">Which languages are taught?</span></summary>
-<div class="rep"><span lang="en">English — both British and American — and French as a foreign language. Sessions can be conducted in French or in English depending on the goal.</span></div>
-</details>
-<details>
-<summary><span lang="en">How much does a programme cost?</span></summary>
-<div class="rep"><span lang="en">Fees are set individually, after a free thirty-minute diagnostic call. They depend on format, frequency and total volume. A written quote is provided before the first session.</span></div>
-</details>
-<details>
-<summary><span lang="en">What level do I need to start?</span></summary>
-<div class="rep"><span lang="en">From rebuilding the basics to the most demanding advanced work. It is particularly suited to people who already have a good level and are stuck on the last gap — cultural usage and naturalness.</span></div>
-</details>
-<details>
-<summary><span lang="en">Which examinations can be prepared?</span></summary>
-<div class="rep"><span lang="en">French teaching examinations (CAPES and agrégation in English), the written and oral papers of the grandes écoles entrance examinations, admissions interviews, and job interviews and professional orals in English.</span></div>
-</details>
-<details>
-<summary><span lang="en">What does the intercultural approach change in practice?</span></summary>
-<div class="rep"><span lang="en">We work not only on the language but on what your audience expects: how direct you may be, the role of humour, how disagreement is expressed, how an argument is built, what is said and what is left unsaid. That is the difference between being understood and being convincing.</span></div>
-</details>
-<details>
-<summary><span lang="en">What does the executive-level programme involve?</span></summary>
-<div class="rep"><span lang="en">It is a track designed for executives, experts and diplomats, built around four advanced modules: executive speaking and leadership, negotiation and diplomacy, strategic writing, and accent reduction and delivery. They are combined according to your role, your audience and your deadline — rarely all four at once.</span></div>
-</details>
-<details>
-<summary><span lang="en">Who is Séverine Williams?</span></summary>
-<div class="rep"><span lang="en">She holds a PhD in Romance Languages and Literatures from Harvard University (2012) and the French agrégation in English (2019, ranked 4th nationally). She has taught for twenty years in the United States, the United Kingdom, France and Morocco, including at Harvard, Boston College, the Institut français in London, the Sorbonne and the Lycée Louis-le-Grand. Her record can be verified against public sources.</span></div>
-</details>
-</div>
-</div>
-</div>
+
+<section id="faq">
+  <div class="page" style="padding-block:clamp(2.5rem,5vw,4rem)">
+    <a href="../faq-en.html" style="text-decoration:none">
+      <h2 style="color:var(--crimson);border-bottom:2px solid var(--crimson);display:inline-block;padding-bottom:.25rem;margin-bottom:.75rem">Frequently asked questions</h2>
+    </a>
+    <p style="color:var(--muted);max-width:50ch;margin:0;font-size:1rem">Levels, fees, method, level assessment and Séverine Williams’s background.</p>
+  </div>
 </section>
+
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="band">
 <div class="page">
@@ -849,11 +864,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <h3><span lang="en">Email</span></h3>
 <a href="mailto:contact@severinewilliams.com">contact@severinewilliams.com</a>
 </div>
-<div class="ct">
-<h3>WhatsApp</h3>
-<a href="https://wa.me/33652402492" rel="noopener" target="_blank">+33 6 52 40 24 92</a>
-<div class="pr"><span lang="en">Messages and calls</span></div>
-</div>
+
 <div class="ct">
 <h3>LinkedIn</h3>
 <a href="https://www.linkedin.com/company/severine-williams-coaching/" rel="noopener" target="_blank">Dr Séverine Williams</a>
@@ -899,7 +910,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <h4>Contact</h4>
 <ul>
 <li><a href="mailto:contact@severinewilliams.com">contact@severinewilliams.com</a></li>
-<li><a href="https://wa.me/33652402492" rel="noopener" target="_blank">WhatsApp +33 6 52 40 24 92</a></li>
+
 </ul>
 </div>
 </div>
@@ -916,7 +927,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
                 French company registration number (SIREN/SIRET): <span class="todo">[to be completed]</span><br/>
                 VAT number: <span class="todo">[to be completed, or “VAT not applicable, article 293 B of the French tax code”]</span><br/>
                 Registered address: <span class="todo">[to be completed]</span><br/>
-                Email: contact@severinewilliams.com — Telephone: +33 6 52 40 24 92<br/>
+                Email: contact@severinewilliams.com<br/>
                 Publication director: Séverine Meunier-Williams.
               </p>
 <h4>Vocational training registration</h4>
@@ -970,7 +981,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <h4>Undertakings</h4>
 <p>The provider undertakes a duty of best efforts: she applies the skills and methods required for the learner to progress, without guaranteeing success in any examination, competitive entrance test or interview. The learner undertakes to attend the agreed sessions and complete the work set.</p>
 <h4>Consumer mediation</h4>
-<p>Under the French Consumer Code, any consumer may refer a dispute free of charge to an approved consumer mediator. Designated mediator: <span class="todo">[to be completed — membership of a mediation scheme is mandatory for any B2C activity in France]</span>.</p>
+<p>Under the French Consumer Code, any consumer may refer a dispute free of charge to an approved consumer mediator. Designated mediator: <span class="todo">[to be completed, membership of a mediation scheme is mandatory for any B2C activity in France]</span>.</p>
 <h4>Governing law</h4>
 <p>French law. French courts have jurisdiction failing an amicable settlement.</p>
 </div>
@@ -1063,7 +1074,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
         "Donald J. White Teaching Award, Boston College (2002)",
         "Harvard Humanities Center conference fellowship (2008)"
       ],
-      "workLocation": {"@type":"Place","name":"À distance / Online — France, Europe, worldwide"},
+      "workLocation": {"@type":"Place","name":"À distance / Online, France, Europe, worldwide"},
       "nationality": {"@type":"Country","name":"France"},
       "sameAs": [
         "https://dash.harvard.edu/entities/publication/73120378-acd4-6bd4-e053-0100007fdf3b",
@@ -1080,13 +1091,13 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
       "@type": ["ProfessionalService", "EducationalOrganization"],
       "@id": "https://www.severinewilliams.com/#organisation",
       "name": "Séverine Williams Coaching",
-      "alternateName": "Dr Séverine Williams — Formation linguistique et interculturelle",
+      "alternateName": "Dr Séverine Williams, Formation linguistique et interculturelle",
       "url": "https://www.severinewilliams.com/",
       "email": "contact@severinewilliams.com",
       "telephone": "+33652402492",
       "founder": {"@id":"https://www.severinewilliams.com/#severine"},
       "employee": {"@id":"https://www.severinewilliams.com/#severine"},
-      "areaServed": {"@type":"Place","name":"Worldwide — online"},
+      "areaServed": {"@type":"Place","name":"Worldwide, online"},
       "availableLanguage": ["fr","en"],
       "priceRange": "Sur devis / On quotation",
       "description": "Formation en anglais et en français langue étrangère à distance : perfectionnement jusqu'au niveau natif, remise à niveau, coaching linguistique, préparation aux concours de haut niveau, aux oraux, aux entretiens d'embauche et aux pitchs en anglais. Approche culturelle, interdisciplinaire et sur mesure.",
@@ -1102,10 +1113,10 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux concours de haut niveau (CAPES, agrégation, grandes écoles)"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux oraux et aux entretiens d'embauche en anglais"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux pitchs en anglais de haut niveau"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Executive Speaking & Leadership","description":"Prise de parole en public, conduite de réunion, gestion des objections en conseil d'administration, art du pitch."}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Négociation et diplomatie","description":"Maîtrise de l'euphémisme (understatement), décodage du second degré des natifs, techniques d'influence."}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Rédaction stratégique","description":"Rapports financiers, contrats, notes blanches et communiqués de presse sans aucune scorie linguistique."}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau — Réduction d'accent et posture","description":"Travail de l'intonation, du rythme et de l'aisance culturelle pour éliminer les barrières de communication."}}
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Executive Speaking & Leadership","description":"Prise de parole en public, conduite de réunion, gestion des objections en conseil d'administration, art du pitch."}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Négociation et diplomatie","description":"Maîtrise de l'euphémisme (understatement), décodage du second degré des natifs, techniques d'influence."}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Rédaction stratégique","description":"Rapports financiers, contrats, notes blanches et communiqués de presse sans aucune scorie linguistique."}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Programme Très Haut Niveau, Réduction d'accent et posture","description":"Travail de l'intonation, du rythme et de l'aisance culturelle pour éliminer les barrières de communication."}}
         ]
       },
       "audience": [
@@ -1160,7 +1171,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
     var nom = f.nom.value.trim(), mail = f.mail.value.trim(),
         obj = (document.getElementById("f-obj-en") || document.getElementById("f-obj")).value,
         msg = f.message.value.trim();
-    var sujet = (en ? "Enquiry — " : "Demande — ") + obj + " — " + nom;
+    var sujet = (en ? "Enquiry, " : "Demande, ") + obj + ", " + nom;
     var corps = (en ? "Name: " : "Nom : ") + nom + "\n"
               + (en ? "Email: " : "Courriel : ") + mail + "\n"
               + (en ? "Goal: " : "Objectif : ") + obj + "\n\n" + msg + "\n";
