@@ -394,15 +394,13 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 .scroll-logo svg{ height:100%; width:auto }
 .scroll-logo:hover{ opacity:.9!important; color:var(--crimson) }
 
-/* une fois que JS ajoute .band-ready sur le .scroll-track : défilement */
+/* une fois que JS ajoute .sur le .scroll-track : défilement */
 .scroll-track{
   display:flex; gap:3.5rem; width:max-content;
   /* pas d'animation par défaut */
 }
-.scroll-track.band-ready{
-  animation: marquee 26s linear infinite;
-}
-.scroll-track.band-ready .scroll-logo{
+
+.scroll-track..scroll-logo{
   opacity:.55;
   transform:translateY(0);
   transition:opacity .25s, color .25s; /* plus de transform transition après */
@@ -412,9 +410,46 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
   to  { transform:translateX(-50%) }
 }
 @media (prefers-reduced-motion:reduce){
-  .scroll-track, .scroll-track.band-ready{ animation:none }
+  .scroll-track, 
   .scroll-track{ flex-wrap:wrap; width:auto; justify-content:center; gap:2rem }
   .scroll-logo{ opacity:.55!important; transform:none!important }
+}
+
+
+/* ─── bandeau logos défilement continu ─── */
+.scroll-band{
+  background:var(--grey);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden; padding:.9rem 0; position:relative;
+}
+.scroll-band::before,
+.scroll-band::after{
+  content:""; position:absolute; top:0; bottom:0;
+  width:5rem; z-index:2; pointer-events:none;
+}
+.scroll-band::before{left:0;  background:linear-gradient(to right,var(--grey),transparent)}
+.scroll-band::after {right:0; background:linear-gradient(to left, var(--grey),transparent)}
+.scroll-track{
+  display:flex; gap:3.5rem; width:max-content;
+  animation:marquee 26s linear infinite;
+}
+.scroll-track:hover{ animation-play-state:paused }
+.scroll-logo{
+  display:inline-flex; align-items:center;
+  height:2.2rem; color:var(--muted); opacity:.55;
+  transition:opacity .25s, color .25s;
+  white-space:nowrap; flex-shrink:0;
+}
+.scroll-logo svg{ height:100%; width:auto }
+.scroll-logo:hover{ opacity:1; color:var(--crimson) }
+@keyframes marquee{
+  from{ transform:translateX(0) }
+  to  { transform:translateX(-50%) }
+}
+@media (prefers-reduced-motion:reduce){
+  .scroll-track{ animation:none; flex-wrap:wrap; width:auto;
+                 justify-content:center; gap:2rem }
 }
 
 </style>
@@ -1216,70 +1251,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
   ]
 }
 </script>
-<script>
-(function(){
-  "use strict";
-  var html = document.documentElement;
-  var EN = html.getAttribute("data-lang") === "en";
 
-  /* ---- année ---- */
-  var y = String(new Date().getFullYear());
-  ["an","an2"].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=y; });
-
-  /* ---- formulaire : compose un courriel ---- */
-  var f = document.getElementById("contactForm");
-  if (f) f.addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var en = EN;
-    var nom = f.nom.value.trim(), mail = f.mail.value.trim(),
-        obj = (document.getElementById("f-obj-en") || document.getElementById("f-obj")).value,
-        msg = f.message.value.trim();
-    var sujet = (en ? "Enquiry, " : "Demande, ") + obj + ", " + nom;
-    var corps = (en ? "Name: " : "Nom : ") + nom + "\n"
-              + (en ? "Email: " : "Courriel : ") + mail + "\n"
-              + (en ? "Goal: " : "Objectif : ") + obj + "\n\n" + msg + "\n";
-    window.location.href = "mailto:contact@severinewilliams.com"
-      + "?subject=" + encodeURIComponent(sujet)
-      + "&body=" + encodeURIComponent(corps);
-  });
-})();
-</script>
-<a class="wa-float" href="https://wa.me/33652402492" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.885a.5.5 0 0 0 .606.63l6.208-1.63A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.877 9.877 0 0 1-5.031-1.378l-.36-.214-3.733.981.998-3.645-.235-.374A9.865 9.865 0 0 1 2.106 12C2.106 6.53 6.53 2.106 12 2.106c5.47 0 9.894 4.424 9.894 9.894 0 5.469-4.424 9.894-9.894 9.894z"/></svg>
-</a>
-<span class="wa-tip">WhatsApp</span>
-
-<script>
-(function(){
-  var track = document.querySelector('.scroll-track');
-  if(!track) return;
-  var logos = track.querySelectorAll('.scroll-logo');
-  var n = logos.length / 2; // moitié (dupliqués pour défilement)
-  var delay = 80; // ms entre chaque logo
-  var i = 0;
-  function showNext(){
-    if(i >= n){ 
-      // tous affichés : lancer le défilement
-      setTimeout(function(){ track.classList.add('band-ready'); }, 200);
-      return;
-    }
-    // Animer le logo i ET son double (n+i)
-    logos[i].style.transition = 'opacity .45s ease, transform .45s ease';
-    logos[i].style.opacity = '0.55';
-    logos[i].style.transform = 'translateY(0)';
-    logos[n+i].style.opacity = '0'; // le double reste invisible jusqu'au scroll
-    logos[n+i].style.transform = 'translateY(0)';
-    i++;
-    setTimeout(showNext, delay);
-  }
-  // Déclencher après chargement complet
-  if(document.readyState === 'complete'){
-    setTimeout(showNext, 180);
-  } else {
-    window.addEventListener('load', function(){ setTimeout(showNext, 180); });
-  }
-})();
-</script>
 
 </body>
 </html>
