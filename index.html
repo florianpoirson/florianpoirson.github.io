@@ -462,7 +462,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <a class="skip" href="#contenu">Aller au contenu</a>
 <div class="alert">
 <div class="alert-in">
-Entretien de diagnostic de 30 minutes, sans frais, <a href="https://cal.com/severinewilliams/30min">prendre rendez-vous</a>
+Entretien de diagnostic de 30 minutes, sans frais, <a href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>prendre rendez-vous</a>
 
 <span class="sp"></span>
 <a aria-label="English version" class="lang" href="/en/" hreflang="en" lang="en">English</a>
@@ -499,7 +499,7 @@ Formation en anglais et en français langue étrangère, à distance, pour celle
 
 </p>
 <div class="btn-row reveal d3" style="margin-top:0">
-<a class="btn" href="https://cal.com/severinewilliams/30min">Demander un entretien</a>
+<a class="btn" href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>Demander un entretien</a>
 <a class="btn btn-parcours" href="#parcours"><span>Voir le parcours</span></a>
 </div>
 <p class="creds reveal d3">
@@ -603,7 +603,7 @@ Niveau d'excellence. Pour cadres dirigeants, experts et diplomates : la langue e
 </li>
 </ul>
 <div class="btn-row">
-<a class="btn" href="https://cal.com/severinewilliams/30min">Construire votre programme</a>
+<a class="btn" href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>Construire votre programme</a>
 </div>
 </div>
 </div>
@@ -982,7 +982,7 @@ Expliquez en quelques lignes quels sont vos objectifs et quelles sont vos éché
 </div>
 <div class="ct">
 <h3>Rendez-vous</h3>
-<a href="https://cal.com/severinewilliams/30min">Réserver un créneau</a>
+<a href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>Réserver un créneau</a>
 <p class="pr">Entretien de diagnostic · 30 min · gratuit</p>
 </div>
 
@@ -1326,6 +1326,14 @@ document.querySelectorAll('details').forEach(function(d){
     }, 950);
   }, 3600);
 })();
+</script>
+
+
+<!-- Cal.com popup embed -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, [L, ar[1], ar[2]])}else{p(cal, ar);} return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://cal.com"});
+Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 
 </body>

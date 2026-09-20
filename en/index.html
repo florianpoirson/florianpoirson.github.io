@@ -462,7 +462,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <a class="skip" href="#contenu">Skip to content</a>
 <div class="alert">
 <div class="alert-in">
-Free 30-minute diagnostic call, <a href="https://cal.com/severinewilliams/30min">book a time</a>
+Free 30-minute diagnostic call, <a href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>book a time</a>
 
 <span class="sp"></span>
 <a aria-label="Version française" class="lang" href="/" hreflang="fr" lang="fr">Français</a>
@@ -499,7 +499,7 @@ English and French as a foreign language training, online, for those who want to
 
 </p>
 <div class="btn-row reveal d3" style="margin-top:0">
-<a class="btn" href="https://cal.com/severinewilliams/30min">Request a call</a>
+<a class="btn" href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>Request a call</a>
 <a class="btn btn-parcours" href="#parcours"><span>See the background</span></a>
 </div>
 <p class="creds reveal d3">
@@ -603,7 +603,7 @@ Excellence level. For senior executives, experts and diplomats: language is a wo
 </li>
 </ul>
 <div class="btn-row">
-<a class="btn" href="https://cal.com/severinewilliams/30min">Build your programme</a>
+<a class="btn" href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>Build your programme</a>
 </div>
 </div>
 </div>
@@ -982,7 +982,7 @@ Tell us in a few lines what your goals and deadlines are. The thirty-minute diag
 </div>
 <div class="ct">
 <h3>Book a call</h3>
-<a href="https://cal.com/severinewilliams/30min">Reserve a slot</a>
+<a href="#" data-cal-namespace="30min" data-cal-link="severinewilliams/30min" data-cal-config='{"layout":"month_view"}'>Reserve a slot</a>
 <p class="pr">Diagnostic interview · 30 min · free</p>
 </div>
 
@@ -1324,6 +1324,14 @@ document.querySelectorAll('details').forEach(function(d){
     }, 950);
   }, 3600);
 })();
+</script>
+
+
+<!-- Cal.com popup embed -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, [L, ar[1], ar[2]])}else{p(cal, ar);} return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://cal.com"});
+Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 
 </body>
