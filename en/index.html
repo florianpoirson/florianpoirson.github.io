@@ -137,7 +137,7 @@ nav.menu a:hover{border-bottom-color:var(--crimson)}
 .hero-dark{background:var(--dark); color:var(--on-dark); position:relative; overflow:hidden}
 .hero-in{
   max-width:var(--max); margin-inline:auto; padding:0 var(--pad);
-  display:grid; grid-template-columns:minmax(0,1fr) 44%; align-items:stretch; gap:0;
+  display:grid; grid-template-columns:minmax(0,1fr) 38%; align-items:stretch; gap:0;
 }
 .hero-txt{padding:clamp(3.5rem,8vw,7rem) clamp(1.5rem,4vw,4rem) clamp(3.5rem,8vw,7rem) 0}
 .hero-dark h1{
@@ -152,7 +152,7 @@ nav.menu a:hover{border-bottom-color:var(--crimson)}
 }
 .hero-img::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg, var(--dark) 0%, rgba(30,30,30,.8) 38%, rgba(30,30,30,.1) 100%);
+  background:linear-gradient(90deg, var(--dark) 0%, rgba(30,30,30,.55) 22%, rgba(30,30,30,0) 48%);
 }
 .creds{
   font-family:var(--sans); font-size:.82rem; line-height:1.85; color:var(--on-dark-2);
@@ -304,33 +304,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 
 
 
-/* ---- bandeau défilant institutions ---- */
-.scroll-band{
-  background:var(--grey); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
-  overflow:hidden; padding:.9rem 0; position:relative;
-}
-.scroll-band::before,.scroll-band::after{
-  content:""; position:absolute; top:0; bottom:0; width:6rem; z-index:2; pointer-events:none;
-}
-.scroll-band::before{left:0; background:linear-gradient(90deg,var(--grey),transparent)}
-.scroll-band::after{right:0; background:linear-gradient(270deg,var(--grey),transparent)}
-.scroll-track{
-  display:flex; gap:3.5rem; width:max-content;
-  animation:scroll-logos 22s linear infinite;
-}
-.scroll-track:hover{animation-play-state:paused}
-.scroll-logo{
-  color:var(--muted); opacity:.65; display:flex; align-items:center; height:2.5rem;
-  transition:opacity .25s, color .25s;
-}
-.scroll-logo:hover{opacity:1; color:var(--crimson)}
-.scroll-logo svg{height:100%; width:auto}
-@keyframes scroll-logos{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-@media (prefers-reduced-motion:reduce){
-  .scroll-track{animation:none; flex-wrap:wrap; width:100%; justify-content:center}
+
 }
 
 /* ---- bouton parcours avec effet ---- */
@@ -367,51 +341,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 .wa-float:hover + .wa-tip{opacity:1}
 
 
-/* ─── bandeau logos : entrée au chargement puis défilement ─── */
-.scroll-band{
-  background:var(--grey);
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-  overflow:hidden; padding:.9rem 0; position:relative;
-}
-.scroll-band::before,
-.scroll-band::after{
-  content:""; position:absolute; top:0; bottom:0;
-  width:5rem; z-index:2; pointer-events:none;
-}
-.scroll-band::before{left:0;  background:linear-gradient(to right,var(--grey),transparent)}
-.scroll-band::after {right:0; background:linear-gradient(to left, var(--grey),transparent)}
 
-/* état initial : chaque logo invisible et décalé vers le bas */
-.scroll-logo{
-  display:inline-flex; align-items:center;
-  height:2.2rem; color:var(--muted);
-  opacity:0;
-  transform:translateY(12px);
-  transition:opacity .2s, color .25s;
-  white-space:nowrap; flex-shrink:0;
-}
-.scroll-logo svg{ height:100%; width:auto }
-.scroll-logo:hover{ opacity:.9!important; color:var(--crimson) }
-
-/* une fois que JS ajoute .sur le .scroll-track : défilement */
-.scroll-track{
-  display:flex; gap:3.5rem; width:max-content;
-  /* pas d'animation par défaut */
-}
-
-.scroll-track..scroll-logo{
-  opacity:.55;
-  transform:translateY(0);
-  transition:opacity .25s, color .25s; /* plus de transform transition après */
-}
-@keyframes marquee{
-  from{ transform:translateX(0) }
-  to  { transform:translateX(-50%) }
-}
-@media (prefers-reduced-motion:reduce){
-  .scroll-track, 
-  .scroll-track{ flex-wrap:wrap; width:auto; justify-content:center; gap:2rem }
   .scroll-logo{ opacity:.55!important; transform:none!important }
 }
 
@@ -431,18 +361,19 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 .scroll-band::before{left:0;  background:linear-gradient(to right,var(--grey),transparent)}
 .scroll-band::after {right:0; background:linear-gradient(to left, var(--grey),transparent)}
 .scroll-track{
-  display:flex; gap:3.5rem; width:max-content;
-  animation:marquee 26s linear infinite;
+  display:flex; gap:5rem; width:max-content;
+  animation:marquee 30s linear infinite;
 }
 .scroll-track:hover{ animation-play-state:paused }
 .scroll-logo{
   display:inline-flex; align-items:center;
-  height:2.2rem; color:var(--muted); opacity:.55;
-  transition:opacity .25s, color .25s;
+  height:2.8rem; color:var(--ink); opacity:.4;
+  transition:opacity .3s, color .3s;
   white-space:nowrap; flex-shrink:0;
+  font-family:var(--serif); letter-spacing:.08em;
 }
 .scroll-logo svg{ height:100%; width:auto }
-.scroll-logo:hover{ opacity:1; color:var(--crimson) }
+.scroll-logo:hover{ opacity:.85; color:var(--crimson) }
 @keyframes marquee{
   from{ transform:translateX(0) }
   to  { transform:translateX(-50%) }
@@ -450,6 +381,61 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 @media (prefers-reduced-motion:reduce){
   .scroll-track{ animation:none; flex-wrap:wrap; width:auto;
                  justify-content:center; gap:2rem }
+}
+
+
+/* fix bouton parcours dans le héros */
+.hero-dark .btn-parcours{
+  background:transparent !important;
+  color:#fff !important;
+  border-color:rgba(255,255,255,.75) !important;
+}
+.hero-dark .btn-parcours:hover{
+  color:var(--dark) !important;
+}
+
+
+/* ── Animation machine à écrire ── */
+#intro-screen{
+  position:fixed; inset:0; z-index:9999;
+  background:#0C0C0C;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:opacity .9s ease;
+}
+#intro-screen.fade-out{ opacity:0; pointer-events:none }
+#intro-screen.gone{ display:none }
+#intro-name{
+  font-family:"EB Garamond", Georgia, serif;
+  font-size:clamp(1.8rem, 4vw, 3.2rem);
+  color:#FFFFFF;
+  font-weight:400;
+  letter-spacing:.08em;
+  border-right:2px solid #A51C30;
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation:
+    typing 2s steps(22, end) .4s forwards,
+    blink-caret .65s step-end infinite;
+}
+#intro-sub{
+  font-family:"Inter", sans-serif;
+  font-size:.85rem;
+  color:#6E6E6E;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-top:1.1rem;
+  opacity:0;
+  transition:opacity .7s ease .3s;
+}
+#intro-screen.show-sub #intro-sub{ opacity:1 }
+@keyframes typing{
+  from{ width:0 }
+  to{ width:22ch }
+}
+@keyframes blink-caret{
+  0%,100%{ border-color:transparent }
+  50%{ border-color:#A51C30 }
 }
 
 </style>
@@ -467,6 +453,9 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <link href="../assets/severine-williams.jpg" rel="icon"/>
 </head>
 <body>
+<div id="intro-screen" aria-hidden="true">
+  <div id="intro-name">Dr Séverine Williams</div>
+
 <a class="skip" href="#contenu"><span lang="en">Skip to content</span></a>
 <div class="alert">
 <div class="alert-in">
@@ -486,7 +475,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <nav aria-label="Principal" class="menu">
 <a href="#approche"><span lang="en">Approach</span></a>
 <a href="#offre"><span lang="en">Programmes</span></a>
-<a href="#tres-haut-niveau"><span lang="en">Executive</span></a>
+<a href="#Excellence"><span lang="en">Executive</span></a>
 <a href="#parcours">See the background</a>
 <a href="#contact">Contact</a>
 </nav>
@@ -498,12 +487,13 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <div class="hero-in">
 <div class="hero-txt">
 <h1 class="reveal d1">
+Understanding a language means understanding a culture
 
-<span lang="en">Understand a culture, not just a language.</span>
 </h1>
 <p class="lead reveal d2">
+English and French as a foreign language training, online, for those who want to stand out.
 
-<span lang="en">Online English and French-as-a-foreign-language training for people who have to be convincing in another language.</span>
+
 </p>
 <div class="btn-row reveal d3" style="margin-top:0">
 <a class="btn" href="#contact"><span lang="en">Request a call</span></a>
@@ -520,30 +510,31 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </div>
 </div>
 
-<div class="scroll-band" aria-hidden="true" role="presentation"><div class="scroll-track"><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span></div></div>
+<div class="scroll-band" aria-hidden="true" role="presentation"><div class="scroll-track"><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span></div></div>
 <!-- ================= APPROCHE ================= -->
 <section id="approche">
 <div class="page">
 <h2><span lang="en">The approach</span></h2>
 <p class="lead">
+A language is a complex mode of communication that allows several messages to be expressed simultaneously, like a palimpsest. Beyond content and syntax, conventions, register, humour and idiom determine how you are perceived.
 
-<span lang="en">A language is not a neutral code you transpose. It is a set of conventions, register, humour, silence, how you say no, that decide how you are heard. Flawless grammar is no substitute for them.</span>
+
 </p>
 <div class="trio">
 <div>
-<h3><span lang="en">Start from your situation</span></h3>
-<p><span lang="en">Why this language, who you are addressing, what you need to obtain, and by when.</span></p>
+<h3>Start from your situation</h3>
+<p>Why this language, who you want to address, what you need to achieve, and by when.</p>
 </div>
 <div>
-<h3><span lang="en">Work on the culture</span></h3>
-<p><span lang="en">The material comes from the target culture. That is what turns correct English into the right English.</span></p>
+<h3>Go deeper into the culture</h3>
+<p>Understanding the culture behind the language is what takes you from correct English to the right English.</p>
 </div>
 <div>
-<h3><span lang="en">Close the last gap</span></h3>
-<p><span lang="en">Rhythm, intonation, allusion and what goes unsaid: what separates a very good level from a native one.</span></p>
+<h3>Attention to detail</h3>
+<p>Rhythm, intonation, allusion, double meaning. Everything left unsaid that makes the difference between a very good level and a native one.</p>
 </div>
 </div>
-<a class="more" href="#tres-haut-niveau"><span lang="en">Explore the executive-level programme</span></a>
+<a class="more" href="#Excellence"><span lang="en">Explore the executive-level programme</span></a>
 </div>
 </section>
 <!-- ================= OFFRE ================= -->
@@ -551,8 +542,9 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <div class="page">
 <h2><span lang="en">Programmes</span></h2>
 <p class="lead">
+All sessions take place online, individually or in very small groups, in French or English depending on the objective.
 
-<span lang="en">All sessions take place online, one-to-one or in very small groups, in French or English depending on the goal.</span>
+
 </p>
 <ul class="tags">
 <li><span lang="en">English</span></li>
@@ -571,13 +563,13 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 </div>
 </section>
 <!-- ================= TRÈS HAUT NIVEAU ================= -->
-<section class="crimson" id="tres-haut-niveau">
+<section class="crimson" id="Excellence">
 <div class="page">
 <div class="main">
-<h2><span lang="en">Executive level</span></h2>
+<h2>Excellence</h2>
 <p class="chapeau">
+Excellence level. For senior executives, experts and diplomats: language is a working tool, and mastering it is a factor of credibility.
 
-<span lang="en">For executives, experts and diplomats: the language is no longer a skill to acquire but an instrument of work, and the smallest approximation costs credibility.</span>
 </p>
 <ul class="mods">
 <li>
@@ -676,6 +668,32 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <span lang="en">Has lived and worked in the United States, the United Kingdom, Germany, France and Morocco.</span>
 </li>
 </ul>
+<div style="margin-top:2.5rem; border-top:3px solid var(--crimson); padding-top:1.5rem">
+  <h3 style="font-family:var(--serif); font-size:1.35rem; margin-bottom:.6rem; color:var(--ink)">Interviews et rencontres littéraires</h3>
+  <p style="color:var(--muted); max-width:58ch; margin-bottom:1.25rem; font-size:1rem">
+    As part of the bilingual cultural programming at Booklore bookshop in Marrakech, Séverine Williams prepared and hosted encounters with public figures, in French and English.
+  </p>
+  <details style="border-top:1px solid var(--rule)">
+    <summary style="cursor:pointer; list-style:none; padding:1rem 2rem 1rem 0; position:relative; font-family:var(--sans); font-size:.9rem; font-weight:600; color:var(--crimson)">
+      Interviewees
+      <span style="position:absolute; right:.2rem; top:.95rem; font-size:1.1rem" class="sum-icon">+</span>
+    </summary>
+    <div style="padding-bottom:1.5rem">
+      <ul class="faits" style="margin-bottom:1rem">
+        <li><a href="https://www.instagram.com/p/DHNygrMoWuz/" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Jane Green</strong></a> <span class="g">— British author of international bestsellers</span></li>
+        <li><a href="https://www.youtube.com/watch?v=8UbJHfaTHOA&t=1879s" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Johann Chapoutot</strong></a> <span class="g">— historian, professor at the Sorbonne, specialist in Nazism</span></li>
+        <li><a href="https://www.instagram.com/p/DOT0r0vgm_L/?img_index=1" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Marie-Christine Barrault</strong></a> <span class="g">— French actress, César award and international nominations</span></li>
+        <li><a href="https://www.youtube.com/watch?v=KhcWSOTVlXo&t=2s" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Géraldine Dalban-Moreynas</strong></a> <span class="g">— author and journalist</span></li>
+        <li><a href="https://www.instagram.com/p/DPRYU19gqDd/" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Mhani Alaoui</strong></a><span class="g"> — Moroccan anglophone author</span></li>
+        <li><a href="https://www.instagram.com/p/DRUpqWQAsnV/" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Margaux Cassan</strong></a><span class="g"> — French philosopher</span></li>
+        <li><a href="https://www.youtube.com/watch?v=7ZMlAipfux0" target="_blank" rel="noopener" style="color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)"><strong>Valérie Pérez</strong></a> <span class="g">— journalist and TV presenter</span>
+        </li>
+      </ul>
+      
+    </div>
+  </details>
+</div>
+
 <details class="plus" id="parcours-detail">
 <summary><span lang="en">Full record and verifiable sources</span></summary>
 <div class="plus-body">
@@ -983,7 +1001,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <ul>
 <li><a href="#approche"><span lang="en">Approach</span></a></li>
 <li><a href="#offre"><span lang="en">All programmes</span></a></li>
-<li><a href="#tres-haut-niveau"><span lang="en">Executive level</span></a></li>
+<li><a href="#Excellence"><span lang="en">Executive level</span></a></li>
 <li><a href="#methode"><span lang="en">Method and fees</span></a></li>
 </ul>
 </div>
@@ -1119,8 +1137,8 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
         {"@type":"Language","name":"Spanish","alternateName":"es"}
       ],
       "knowsAbout": [
-        "Enseignement de l'anglais",
-        "Français langue étrangère",
+        "Teaching de l'anglais",
+        "French as a foreign language",
         "Communication interculturelle",
         "Préparation aux concours de l'enseignement (CAPES, agrégation)",
         "Préparation aux oraux et entretiens en anglais",
@@ -1204,10 +1222,10 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
         "name": "Formations",
         "itemListElement": [
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Cours d'anglais en distanciel, tous niveaux jusqu'au niveau natif"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Français langue étrangère (FLE) pour professionnels et étudiants"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Remise à niveau en anglais"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"French as a foreign language (FLE) pour professionnels et étudiants"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Catch-up course en anglais"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Perfectionnement et travail du registre, de l'idiomatisme et de l'accent"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Coaching linguistique individuel"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Language coaching individuel"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux concours de haut niveau (CAPES, agrégation, grandes écoles)"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux oraux et aux entretiens d'embauche en anglais"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Préparation aux pitchs en anglais de haut niveau"}},
@@ -1238,7 +1256,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
       "@type": "FAQPage",
       "@id": "https://www.severinewilliams.com/#faq",
       "mainEntity": [
-        {"@type":"Question","name":"Les cours ont-ils lieu en présentiel ?","acceptedAnswer":{"@type":"Answer","text":"Non. Toutes les formations se déroulent en distanciel, en visioconférence, ce qui permet de travailler depuis n'importe quel pays et de s'adapter aux fuseaux horaires comme aux agendas chargés."}},
+        {"@type":"Question","name":"Les cours ont-ils lieu en présentiel ?","acceptedAnswer":{"@type":"Answer","text":"Non. All programmes se déroulent en distanciel, en visioconférence, ce qui permet de travailler depuis n'importe quel pays et de s'adapter aux fuseaux horaires comme aux agendas chargés."}},
         {"@type":"Question","name":"Quelles langues sont enseignées ?","acceptedAnswer":{"@type":"Answer","text":"L'anglais, britannique et américain, et le français langue étrangère. Les séances peuvent se dérouler en français ou en anglais selon l'objectif visé."}},
         {"@type":"Question","name":"Combien coûte une formation ?","acceptedAnswer":{"@type":"Answer","text":"Les tarifs sont établis sur mesure, après un entretien de diagnostic gratuit de trente minutes. Ils dépendent du format, de la fréquence et du volume total. Un devis écrit est remis avant la première séance."}},
         {"@type":"Question","name":"À partir de quel niveau peut-on commencer ?","acceptedAnswer":{"@type":"Answer","text":"De la remise à niveau au perfectionnement le plus exigeant. Le travail est particulièrement adapté aux personnes qui ont déjà un bon niveau et qui butent sur le dernier écart, celui des usages culturels et du naturel."}},
@@ -1260,5 +1278,27 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
   </svg>
 </a>
 <span class="wa-tip">WhatsApp</span>
+<script>
+(function(){
+  // Ne pas rejouer si l'utilisateur revient en arrière dans la session
+  if(sessionStorage.getItem('intro-done')){
+    var sc=document.getElementById('intro-screen');
+    if(sc){sc.classList.add('gone');}
+    return;
+  }
+  var screen=document.getElementById('intro-screen');
+  if(!screen) return;
+  // Sous-titre après la fin de la frappe (2.4s)
+  setTimeout(function(){ screen.classList.add('show-sub'); }, 2400);
+  // Fondu après 3.6s
+  setTimeout(function(){
+    screen.classList.add('fade-out');
+    setTimeout(function(){
+      screen.classList.add('gone');
+      sessionStorage.setItem('intro-done','1');
+    }, 950);
+  }, 3600);
+})();
+</script>
 </body>
 </html>
