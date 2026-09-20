@@ -304,33 +304,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 
 
 
-/* ---- bandeau défilant institutions ---- */
-.scroll-band{
-  background:var(--grey); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
-  overflow:hidden; padding:.9rem 0; position:relative;
-}
-.scroll-band::before,.scroll-band::after{
-  content:""; position:absolute; top:0; bottom:0; width:6rem; z-index:2; pointer-events:none;
-}
-.scroll-band::before{left:0; background:linear-gradient(90deg,var(--grey),transparent)}
-.scroll-band::after{right:0; background:linear-gradient(270deg,var(--grey),transparent)}
-.scroll-track{
-  display:flex; gap:3.5rem; width:max-content;
-  animation:scroll-logos 22s linear infinite;
-}
-.scroll-track:hover{animation-play-state:paused}
-.scroll-logo{
-  color:var(--muted); opacity:.65; display:flex; align-items:center; height:2.5rem;
-  transition:opacity .25s, color .25s;
-}
-.scroll-logo:hover{opacity:1; color:var(--crimson)}
-.scroll-logo svg{height:100%; width:auto}
-@keyframes scroll-logos{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-@media (prefers-reduced-motion:reduce){
-  .scroll-track{animation:none; flex-wrap:wrap; width:100%; justify-content:center}
+
 }
 
 /* ---- bouton parcours avec effet ---- */
@@ -367,51 +341,7 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 .wa-float:hover + .wa-tip{opacity:1}
 
 
-/* ─── bandeau logos : entrée au chargement puis défilement ─── */
-.scroll-band{
-  background:var(--grey);
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-  overflow:hidden; padding:.9rem 0; position:relative;
-}
-.scroll-band::before,
-.scroll-band::after{
-  content:""; position:absolute; top:0; bottom:0;
-  width:5rem; z-index:2; pointer-events:none;
-}
-.scroll-band::before{left:0;  background:linear-gradient(to right,var(--grey),transparent)}
-.scroll-band::after {right:0; background:linear-gradient(to left, var(--grey),transparent)}
 
-/* état initial : chaque logo invisible et décalé vers le bas */
-.scroll-logo{
-  display:inline-flex; align-items:center;
-  height:2.2rem; color:var(--muted);
-  opacity:0;
-  transform:translateY(12px);
-  transition:opacity .2s, color .25s;
-  white-space:nowrap; flex-shrink:0;
-}
-.scroll-logo svg{ height:100%; width:auto }
-.scroll-logo:hover{ opacity:.9!important; color:var(--crimson) }
-
-/* une fois que JS ajoute .sur le .scroll-track : défilement */
-.scroll-track{
-  display:flex; gap:3.5rem; width:max-content;
-  /* pas d'animation par défaut */
-}
-
-.scroll-track..scroll-logo{
-  opacity:.55;
-  transform:translateY(0);
-  transition:opacity .25s, color .25s; /* plus de transform transition après */
-}
-@keyframes marquee{
-  from{ transform:translateX(0) }
-  to  { transform:translateX(-50%) }
-}
-@media (prefers-reduced-motion:reduce){
-  .scroll-track, 
-  .scroll-track{ flex-wrap:wrap; width:auto; justify-content:center; gap:2rem }
   .scroll-logo{ opacity:.55!important; transform:none!important }
 }
 
@@ -498,11 +428,12 @@ Entretien de diagnostic de 30 minutes, sans frais, <a href="#contact">prendre re
 <div class="hero-in">
 <div class="hero-txt">
 <h1 class="reveal d1">
-Comprendre une langue, c'est comprendre une culture.
+Comprendre une langue, c'est comprendre une culture
 
 </h1>
 <p class="lead reveal d2">
 Formation en anglais et en français langue étrangère, à distance, pour celles et ceux qui veulent se démarquer.
+
 
 </p>
 <div class="btn-row reveal d3" style="margin-top:0">
@@ -510,7 +441,8 @@ Formation en anglais et en français langue étrangère, à distance, pour celle
 <a class="btn btn-parcours" href="#parcours"><span>Voir le parcours</span></a>
 </div>
 <p class="creds reveal d3">
-<b>Dr Séverine Williams</b>, docteure de Harvard University, Agrégée d’anglais · Professeure agrégée en disponibilité · Vingt ans d’enseignement aux États-Unis, au Royaume-Uni, en Allemagne, en France et au Maroc
+<b>Dr Séverine Williams</b>, titulaire d'un doctorat de Harvard University, Agrégée d'anglais · Vingt ans d'enseignement et de programmation culturelle aux États-Unis, au Royaume-Uni, en Allemagne, en France et au Maroc
+
 
 </p>
 </div>
@@ -526,21 +458,22 @@ Formation en anglais et en français langue étrangère, à distance, pour celle
 <div class="page">
 <h2>L’approche</h2>
 <p class="lead">
-Une langue n’est pas un code neutre que l’on transpose. C’est un ensemble de conventions, registre, humour, silence, façon de dire non, qui décident de la manière dont vous êtes entendu. Une grammaire irréprochable ne les remplace pas.
+Une langue est un mode de communication complexe qui permet d'exprimer plusieurs messages simultanément en palimpseste. Au-delà du contenu et de la syntaxe, les conventions, le registre, l'humour, les locutions déterminent la manière dont vous êtes entendu.
+
 
 </p>
 <div class="trio">
 <div>
 <h3>Partir de votre situation</h3>
-<p>Pourquoi cette langue, à qui vous vous adressez, ce que vous devez obtenir, et pour quand.</p>
+<p>Pourquoi cette langue, à qui voulez-vous vous adresser, ce que vous devez obtenir, et dans quel délai?</p>
 </div>
 <div>
-<h3>Travailler la culture</h3>
-<p>Les supports viennent de la culture visée. C’est ce qui fait passer d’un anglais correct à un anglais juste.</p>
+<h3>Approfondir la culture</h3>
+<p>Comprendre la culture derrière la langue est ce qui fait passer d'un anglais correct à un anglais juste.</p>
 </div>
 <div>
-<h3>Fermer le dernier écart</h3>
-<p>Rythme, intonation, allusion, et ce qu’on ne dit pas : ce qui sépare un très bon niveau d’un niveau natif.</p>
+<h3>Aller dans le détail</h3>
+<p>Rythme, intonation, allusion, double entendre. Tout ce que l'on ne dit pas et qui fait la différence entre un très bon niveau et un niveau natif.</p>
 </div>
 </div>
 <a class="more" href="#Excellence">Découvrir le programme d'excellence</a>
@@ -551,7 +484,8 @@ Une langue n’est pas un code neutre que l’on transpose. C’est un ensemble 
 <div class="page">
 <h2>Formations</h2>
 <p class="lead">
-Toutes les séances ont lieu en distanciel, en individuel ou en très petit groupe, en français ou en anglais selon l’objectif.
+Toutes les séances ont lieu en distanciel, individuellement ou en très petit groupe, en français ou en anglais selon l'objectif.
+
 
 </p>
 <ul class="tags">
@@ -576,7 +510,8 @@ Pour entrepreneurs et dirigeants, professionnels, universitaires et chercheurs, 
 <div class="main">
 <h2>Excellence</h2>
 <p class="chapeau">
-Pour cadres dirigeants, experts et diplomates : la langue n’est plus une compétence à acquérir, c’est un instrument de travail, et la moindre approximation se paie en crédibilité.
+Niveau d'excellence. Pour cadres dirigeants, experts et diplomates : la langue est un instrument de travail, et sa maîtrise un facteur de crédibilité.
+
 
 </p>
 <ul class="mods">
@@ -595,7 +530,7 @@ Pour cadres dirigeants, experts et diplomates : la langue n’est plus une comp�
 <li>
 <div>
 <h3>Rédaction stratégique</h3>
-<p>Rapports financiers, contrats, notes blanches, communiqués de presse, correspondance sensible : une langue écrite sans la moindre scorie, dans le registre exact attendu par le destinataire.</p>
+<p>Une langue écrite sans la moindre scorie, dans le registre exact attendu par le destinataire.</p>
 </div>
 </li>
 <li>
@@ -645,7 +580,8 @@ Les tarifs sont établis sur mesure, selon le format retenu, la fréquence des s
 <div class="page">
 <h2>Parcours</h2>
 <p class="lead">
-Séverine Williams est docteure de l’université Harvard et agrégée d’anglais. Elle a enseigné pendant vingt ans à Harvard, à Boston College, à Bryn Mawr College, à l’Institut français de Londres, à la Sorbonne, au lycée Louis-le-Grand et au lycée français international de Marrakech. C’est de cette circulation entre cinq pays que vient sa manière d’enseigner les langues.
+Séverine Williams est titulaire d'un doctorat de l'université de Harvard et agrégée d'anglais. Après vingt ans d'enseignement et de programmation culturelle à Harvard, à Boston College, à Tufts, à Bryn Mawr College, à l'Institut français de Londres, à la Sorbonne, au lycée Louis-le-Grand et au lycée français international de Marrakech puis au sein de la librairie bilingue Booklore, elle crée sa propre formation de coaching linguistique et culture en français et en anglais. C'est de cette circulation entre cinq pays que vient sa manière d'enseigner les langues.
+
 
 </p>
 <ul class="faits">
@@ -990,7 +926,8 @@ Bourses de recherche<em>Bourse doctorale complète de Harvard, bourse d’échan
 <div class="main">
 <h2>Commencer par une conversation</h2>
 <p class="chapeau">
-Dites en quelques lignes ce que vous devez obtenir et pour quand. L’entretien de diagnostic de trente minutes est sans frais et sans engagement.
+Expliquez en quelques lignes quels sont vos objectifs et quelles sont vos échéances. L'entretien de diagnostic de trente minutes est sans frais et sans engagement.
+
 
 </p>
 <div class="contact-grid">
