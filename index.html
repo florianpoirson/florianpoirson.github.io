@@ -152,7 +152,7 @@ nav.menu a:hover{border-bottom-color:var(--crimson)}
 }
 .hero-img::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg, var(--dark) 0%, rgba(30,30,30,.65) 30%, rgba(30,30,30,0) 62%);
+  background:linear-gradient(90deg, var(--dark) 0%, rgba(30,30,30,.55) 22%, rgba(30,30,30,0) 48%);
 }
 .creds{
   font-family:var(--sans); font-size:.82rem; line-height:1.85; color:var(--on-dark-2);
@@ -361,18 +361,19 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 .scroll-band::before{left:0;  background:linear-gradient(to right,var(--grey),transparent)}
 .scroll-band::after {right:0; background:linear-gradient(to left, var(--grey),transparent)}
 .scroll-track{
-  display:flex; gap:3.5rem; width:max-content;
-  animation:marquee 26s linear infinite;
+  display:flex; gap:5rem; width:max-content;
+  animation:marquee 30s linear infinite;
 }
 .scroll-track:hover{ animation-play-state:paused }
 .scroll-logo{
   display:inline-flex; align-items:center;
-  height:2.2rem; color:var(--muted); opacity:.55;
-  transition:opacity .25s, color .25s;
+  height:2.8rem; color:var(--ink); opacity:.4;
+  transition:opacity .3s, color .3s;
   white-space:nowrap; flex-shrink:0;
+  font-family:var(--serif); letter-spacing:.08em;
 }
 .scroll-logo svg{ height:100%; width:auto }
-.scroll-logo:hover{ opacity:1; color:var(--crimson) }
+.scroll-logo:hover{ opacity:.85; color:var(--crimson) }
 @keyframes marquee{
   from{ transform:translateX(0) }
   to  { transform:translateX(-50%) }
@@ -380,6 +381,61 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 @media (prefers-reduced-motion:reduce){
   .scroll-track{ animation:none; flex-wrap:wrap; width:auto;
                  justify-content:center; gap:2rem }
+}
+
+
+/* fix bouton parcours dans le héros */
+.hero-dark .btn-parcours{
+  background:transparent !important;
+  color:#fff !important;
+  border-color:rgba(255,255,255,.75) !important;
+}
+.hero-dark .btn-parcours:hover{
+  color:var(--dark) !important;
+}
+
+
+/* ── Animation machine à écrire ── */
+#intro-screen{
+  position:fixed; inset:0; z-index:9999;
+  background:#0C0C0C;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:opacity .9s ease;
+}
+#intro-screen.fade-out{ opacity:0; pointer-events:none }
+#intro-screen.gone{ display:none }
+#intro-name{
+  font-family:"EB Garamond", Georgia, serif;
+  font-size:clamp(1.8rem, 4vw, 3.2rem);
+  color:#FFFFFF;
+  font-weight:400;
+  letter-spacing:.08em;
+  border-right:2px solid #A51C30;
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation:
+    typing 2s steps(22, end) .4s forwards,
+    blink-caret .65s step-end infinite;
+}
+#intro-sub{
+  font-family:"Inter", sans-serif;
+  font-size:.85rem;
+  color:#6E6E6E;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-top:1.1rem;
+  opacity:0;
+  transition:opacity .7s ease .3s;
+}
+#intro-screen.show-sub #intro-sub{ opacity:1 }
+@keyframes typing{
+  from{ width:0 }
+  to{ width:22ch }
+}
+@keyframes blink-caret{
+  0%,100%{ border-color:transparent }
+  50%{ border-color:#A51C30 }
 }
 
 </style>
@@ -397,6 +453,12 @@ footer h4{font-family:var(--sans); font-size:.74rem; font-weight:700; color:#fff
 <link href="assets/severine-williams.jpg" rel="icon"/>
 </head>
 <body>
+
+<div id="intro-screen" aria-hidden="true">
+  <div id="intro-name">Dr Séverine Williams</div>
+  <div id="intro-sub">Formation linguistique &amp; interculturelle</div>
+</div>
+
 <a class="skip" href="#contenu">Aller au contenu</a>
 <div class="alert">
 <div class="alert-in">
@@ -452,7 +514,7 @@ Formation en anglais et en français langue étrangère, à distance, pour celle
 </div>
 </div>
 
-<div class="scroll-band" aria-hidden="true" role="presentation"><div class="scroll-track"><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="14" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span></div></div>
+<div class="scroll-band" aria-hidden="true" role="presentation"><div class="scroll-track"><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span><span class="scroll-logo" title="Harvard"><svg viewBox="0 0 97 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">HARVARD</text></svg></span><span class="scroll-logo" title="Paris-Sorbonne"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Paris-Sorbonne</text></svg></span><span class="scroll-logo" title="Boston College"><svg viewBox="0 0 174 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Boston College</text></svg></span><span class="scroll-logo" title="Bryn Mawr"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Bryn Mawr</text></svg></span><span class="scroll-logo" title="ENS"><svg viewBox="0 0 119 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ENS Paris</text></svg></span><span class="scroll-logo" title="Tufts University"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Tufts</text></svg></span><span class="scroll-logo" title="ESCP"><svg viewBox="0 0 90 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">ESCP</text></svg></span><span class="scroll-logo" title="Univ. of London"><svg viewBox="0 0 185 36" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="26" text-anchor="middle" font-family="Georgia,'EB Garamond',serif" font-size="16" fill="currentColor" letter-spacing="1">Univ. of London</text></svg></span></div></div>
 <!-- ================= APPROCHE ================= -->
 <section id="approche">
 <div class="page">
@@ -1243,6 +1305,30 @@ document.querySelectorAll('details').forEach(function(d){
     if(icon) icon.textContent = d.open ? '\u2013' : '+';
   });
 });
+</script>
+
+
+<script>
+(function(){
+  // Ne pas rejouer si l'utilisateur revient en arrière dans la session
+  if(sessionStorage.getItem('intro-done')){
+    var sc=document.getElementById('intro-screen');
+    if(sc){sc.classList.add('gone');}
+    return;
+  }
+  var screen=document.getElementById('intro-screen');
+  if(!screen) return;
+  // Sous-titre après la fin de la frappe (2.4s)
+  setTimeout(function(){ screen.classList.add('show-sub'); }, 2400);
+  // Fondu après 3.6s
+  setTimeout(function(){
+    screen.classList.add('fade-out');
+    setTimeout(function(){
+      screen.classList.add('gone');
+      sessionStorage.setItem('intro-done','1');
+    }, 950);
+  }, 3600);
+})();
 </script>
 
 </body>
